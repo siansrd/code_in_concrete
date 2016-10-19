@@ -2,11 +2,19 @@ var React = require('react');
 
 var Term = React.createClass({
 
+  propType: {
+    title: React.PropTypes.string.isRequired,
+    key: React.PropTypes.number.isRequired
+  },
+
+  handleClick: function(){
+    var selectedId = this.props.id
+    this.props.termClicked(selectedId)
+  },
+
   render: function() {
     return (
-      <div>
-        {this.props.title}
-      </div>
+      <p onClick={this.handleClick}>{this.props.title}</p>
     )
   }
 

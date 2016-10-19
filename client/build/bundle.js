@@ -21435,10 +21435,20 @@
 	  displayName: 'Term',
 	
 	
+	  propType: {
+	    title: React.PropTypes.string.isRequired,
+	    key: React.PropTypes.number.isRequired
+	  },
+	
+	  handleClick: function handleClick() {
+	    var selectedId = this.props.id;
+	    this.props.termClicked(selectedId);
+	  },
+	
 	  render: function render() {
 	    return React.createElement(
-	      'div',
-	      null,
+	      'p',
+	      { onClick: this.handleClick },
 	      this.props.title
 	    );
 	  }
@@ -21463,12 +21473,12 @@
 	  render: function render() {
 	
 	    var listItems = this.props.contents.map(function (term) {
-	      return React.createElement(
-	        Term,
-	        { title: term.title, key: term.id },
-	        term.title
-	      );
-	    });
+	      return React.createElement(Term, {
+	        termClicked: this.props.termClicked,
+	        title: term.title,
+	        key: term.id,
+	        id: term.id });
+	    }.bind(this));
 	
 	    return React.createElement(
 	      'div',
@@ -21489,33 +21499,87 @@
 	
 	var React = __webpack_require__(1);
 	var List = __webpack_require__(173);
-	
-	var contents = [{ id: 1, title: "Infinite Loop", class: "infiniteLoop" }, { id: 2, title: "Parameter", class: "parameter" }, { id: 3, title: "Anonymous Function", class: "anonymous" }];
+	var Definition = __webpack_require__(175);
 	
 	var Glossary = React.createClass({
 	  displayName: 'Glossary',
 	
 	
 	  getInitialState: function getInitialState() {
-	    return { contents: contents };
+	    return { contents: [], focusTerm: null };
+	  },
+	
+	  componentDidMount: function componentDidMount() {
+	    var url = "api/contents";
+	    var request = new XMLHttpRequest();
+	    request.open("GET", url);
+	    request.onload = function () {
+	      var data = JSON.parse(request.responseText);
+	      this.setState({ contents: data });
+	    }.bind(this);
+	    request.send();
+	  },
+	
+	  termClicked: function termClicked(termId) {
+	    this.setState({ focusTerm: termId });
 	  },
 	
 	  render: function render() {
+	
 	    return React.createElement(
 	      'div',
-	      null,
+	      { id: 'wrapper' },
 	      React.createElement(
-	        'h2',
-	        null,
-	        'List'
+	        'div',
+	        { id: 'list' },
+	        React.createElement(
+	          'h2',
+	          null,
+	          'Terms'
+	        ),
+	        React.createElement(List, { contents: this.state.contents, termClicked: this.termClicked })
 	      ),
-	      React.createElement(List, { contents: this.state.contents })
+	      React.createElement(
+	        'div',
+	        { id: 'definition' },
+	        React.createElement(
+	          'h2',
+	          null,
+	          'Definition'
+	        ),
+	        React.createElement(Definition, { contents: 'Hi' })
+	      )
 	    );
 	  }
 	
 	});
 	
 	module.exports = Glossary;
+
+/***/ },
+/* 175 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var React = __webpack_require__(1);
+	
+	var Definition = React.createClass({
+	  displayName: 'Definition',
+	
+	
+	  render: function render() {
+	
+	    return React.createElement(
+	      'p',
+	      null,
+	      this.props.contents
+	    );
+	  }
+	
+	});
+	
+	module.exports = Definition;
 
 /***/ }
 /******/ ]);

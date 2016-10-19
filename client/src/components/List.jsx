@@ -5,12 +5,15 @@ var List = React.createClass({
 
   render: function(){
 
-    var listItems = this.props.contents.map(
-      function(term){
+    var listItems = this.props.contents.map(function(term){
         return (
-          <Term title={term.title} key={term.id}>{term.title}</Term>
+          <Term 
+          termClicked={this.props.termClicked}
+          title={term.title} 
+          key={term.id} 
+          id={term.id} />
         )
-      }
+      }.bind(this)
     );
 
     return (
