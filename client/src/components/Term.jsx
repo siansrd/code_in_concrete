@@ -14,7 +14,7 @@ var Term = React.createClass({
 
   render: function() {
     return (
-      <p onClick={this.handleClick}>{this.props.title}</p>
+      <p className="listItem" onClick={this.handleClick}>{this.props.title}</p>
     )
   }
 

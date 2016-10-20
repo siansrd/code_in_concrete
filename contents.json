@@ -1,15 +1,18 @@
 [
   {
-    "id": 1,  
+    "id": 0,  
     "title": "Infinite Loop",
-    "img": "https://giphy.com/gifs/oc-perfectloops-slinky-FlLEMFOVVmbBu"
+    "img": "public/imgs/wasps.png",
+    "gif": "//giphy.com/embed/FlLEMFOVVmbBu?hideSocial=true"
+  }, 
+  {
+    "id": 1, 
+    "title": "Parameter",
+    "img": "http://www.promocatering.co.uk/images/products/c1465-05-banana_holder-v1.jpg"
   }, 
   {
     "id": 2, 
-    "title": "Parameter"
-  }, 
-  {
-    "id": 3, 
-    "title": "Anonymous Function"
+    "title": "React",
+    "img": "https://s-media-cache-ak0.pinimg.com/736x/fe/e1/5d/fee15dbd1849ac6848b381d93ffb500b.jpg"
   }
 ]

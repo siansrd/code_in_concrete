@@ -1,12 +1,12 @@
 var React = require('react');
 var List = require('./List');
-var Definition = require('./Definition');
+var Example = require('./Example');
 
 
 var Glossary = React.createClass({
 
   getInitialState: function() {
-    return { contents: [], focusTerm: null }
+    return { contents: [], focusTerm: 0 }
   }, 
 
   componentDidMount: function() {
@@ -25,7 +25,6 @@ var Glossary = React.createClass({
   },
 
   render: function(){
-
     return (
       <div id="wrapper">
         <div id="list">
@@ -34,7 +33,7 @@ var Glossary = React.createClass({
         </div>
         <div id="definition">
           <h2>Definition</h2>
-          <Definition contents="Hi"/> 
+          <Example selectedTerm={this.state.contents[this.state.focusTerm]}/> 
         </div>
       </div>
     )

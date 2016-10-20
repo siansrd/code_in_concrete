@@ -21427,12 +21427,12 @@
 /* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 	
 	var React = __webpack_require__(1);
 	
 	var Term = React.createClass({
-	  displayName: 'Term',
+	  displayName: "Term",
 	
 	
 	  propType: {
@@ -21447,8 +21447,8 @@
 	
 	  render: function render() {
 	    return React.createElement(
-	      'p',
-	      { onClick: this.handleClick },
+	      "p",
+	      { className: "listItem", onClick: this.handleClick },
 	      this.props.title
 	    );
 	  }
@@ -21499,14 +21499,14 @@
 	
 	var React = __webpack_require__(1);
 	var List = __webpack_require__(173);
-	var Definition = __webpack_require__(175);
+	var Example = __webpack_require__(176);
 	
 	var Glossary = React.createClass({
 	  displayName: 'Glossary',
 	
 	
 	  getInitialState: function getInitialState() {
-	    return { contents: [], focusTerm: null };
+	    return { contents: [], focusTerm: 0 };
 	  },
 	
 	  componentDidMount: function componentDidMount() {
@@ -21525,7 +21525,6 @@
 	  },
 	
 	  render: function render() {
-	
 	    return React.createElement(
 	      'div',
 	      { id: 'wrapper' },
@@ -21547,7 +21546,7 @@
 	          null,
 	          'Definition'
 	        ),
-	        React.createElement(Definition, { contents: 'Hi' })
+	        React.createElement(Example, { selectedTerm: this.state.contents[this.state.focusTerm] })
 	      )
 	    );
 	  }
@@ -21557,23 +21556,37 @@
 	module.exports = Glossary;
 
 /***/ },
-/* 175 */
+/* 175 */,
+/* 176 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 	
 	var React = __webpack_require__(1);
 	
 	var Definition = React.createClass({
-	  displayName: 'Definition',
+	  displayName: "Definition",
 	
 	
 	  render: function render() {
+	    if (!this.props.selectedTerm) {
+	      return React.createElement(
+	        "p",
+	        null,
+	        "Hi"
+	      );
+	    }
 	
 	    return React.createElement(
-	      'p',
+	      "div",
 	      null,
-	      this.props.contents
+	      React.createElement(
+	        "p",
+	        null,
+	        this.props.selectedTerm.title
+	      ),
+	      React.createElement("img", { src: this.props.selectedTerm.img, width: "480" }),
+	      React.createElement("iframe", { src: this.props.selectedTerm.gif, width: "480", height: "269" })
 	    );
 	  }
 	

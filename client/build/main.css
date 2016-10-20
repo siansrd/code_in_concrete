@@ -1,16 +1,16 @@
 body {
+  margin-left: 40px;
   font-family: 'Eczar', serif;
   font-size: 18px;
 }
 
-h1#logo {
+h2#logo {
   position: fixed;
   right: 50px;
   top: 0;
 }
 
 #app {
-  margin: 30px;
   width: 100%;
 }
 
@@ -23,3 +23,14 @@ h1#logo {
   float: right;
   width: 80%;
 }
+
+p.listItem {
+  -webkit-margin-before: 4px;
+  -webkit-margin-after: 4px;
+}
+
+p.listItem:hover {
+  border-bottom: 2px solid #000;
+  cursor: pointer;
+}
+
